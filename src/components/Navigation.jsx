@@ -1,122 +1,90 @@
 import { useState, useEffect } from 'react'
-import { Menu, X, Home, User, Code, Briefcase, Mail } from 'lucide-react'
 
 const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('home')
-
-  const navItems = [
-    { id: 'home', label: 'Home', icon: Home },
-    { id: 'about', label: 'About', icon: User },
-    { id: 'skills', label: 'Skills', icon: Code },
-    { id: 'projects', label: 'Projects', icon: Briefcase },
-    { id: 'contact', label: 'Contact', icon: Mail }
-  ]
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = navItems.map(item => item.id)
-      const scrollPosition = window.scrollY + 100
-
-      for (const section of sections) {
-        const element = document.getElementById(section)
-        if (element) {
-          const offsetTop = element.offsetTop
-          const offsetHeight = element.offsetHeight
-
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section)
-            break
-          }
-        }
-      }
+      setIsScrolled(window.scrollY > 50)
     }
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-    setIsOpen(false)
-  }
+  const navItems = [
+    { name: 'Home', href: '#home' },
+    { name: 'Profile', href: '#about' },
+    { name: 'Contact', href: '#contact' },
+    { name: 'Project', href: '#project' }
+  ]
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 shadow-sm">
-      <div className="container mx-auto px-6">
-        <div className="flex items-center h-16">
-          {/* Logo */}
-          <div 
-            onClick={() => scrollToSection('home')}
-            className="flex items-center cursor-pointer"
-          >
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center mr-3">
-              <span className="text-white font-bold text-lg">B</span>
-            </div>
-            <span className="text-xl font-bold text-gray-900 dark:text-white">
-              Buddhi
-            </span>
-          </div>
-
-          {/* Centered Desktop Navigation */}
-          <div className="hidden md:flex items-center justify-center flex-1">
-            <div className="flex items-center space-x-8 bg-gray-50/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full px-6 py-2 border border-gray-200/50 dark:border-gray-700/50">
-              {navItems.map((item) => {
-                const IconComponent = item.icon
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className={`flex items-center px-4 py-2 rounded-full transition-all duration-300 ${
-                      activeSection === item.id
-                        ? 'text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg'
-                        : 'text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/50 dark:hover:bg-gray-700/50'
-                    }`}
-                  >
-                    <IconComponent className="w-4 h-4 mr-2" />
-                    {item.label}
-                  </button>
-                )
-              })}
-            </div>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex-1 flex justify-end">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent">
+      <div className="container mx-auto px-8 py-6">
+        <div className="flex items-center justify-between">
+          {/* Left side - Menu and Logo */}
+          <div className="flex items-center space-x-8">
+            {/* Hamburger Menu */}
             <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+              className="text-white p-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+
+            {/* Logo */}
+            <div className="text-white text-xl font-bold tracking-wider">
+              BIW
+            </div>
+          </div>
+
+          {/* Right side - Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-white/80 text-sm hover:text-white transition-colors"
+              >
+                {item.name}
+              </a>
+            ))}
+            
+            {/* Search Icon */}
+            <button className="text-white/80 hover:text-white transition-colors">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Mobile Navigation */}
+          <div className="md:hidden">
+            <button className="text-white/80 hover:text-white transition-colors">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200 dark:border-gray-700">
-            <div className="space-y-2">
-              {navItems.map((item) => {
-                const IconComponent = item.icon
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className={`flex items-center w-full px-4 py-3 rounded-lg transition-all duration-300 ${
-                      activeSection === item.id
-                        ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/20'
-                        : 'text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400'
-                    }`}
-                  >
-                    <IconComponent className="w-5 h-5 mr-3" />
-                    {item.label}
-                  </button>
-                )
-              })}
-            </div>
+        {/* Mobile Menu Dropdown */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden mt-4 bg-black/90 backdrop-blur-sm rounded-lg p-4">
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="block py-2 text-white/80 hover:text-white transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item.name}
+              </a>
+            ))}
           </div>
         )}
       </div>
@@ -125,4 +93,3 @@ const Navigation = () => {
 }
 
 export default Navigation
-
