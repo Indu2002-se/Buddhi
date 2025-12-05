@@ -16,8 +16,9 @@ const Navigation = () => {
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'Profile', href: '#about' },
-    { name: 'Contact', href: '#contact' },
-    { name: 'Project', href: '#project' }
+    { name: 'Portfolio', href: '#portfolio' },
+    { name: 'Blogs', href: '#blogs' },
+    { name: 'Contact', href: '#contact' }
   ]
 
   return (
@@ -26,15 +27,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           {/* Left side - Menu and Logo */}
           <div className="flex items-center space-x-8">
-            {/* Hamburger Menu */}
-            <button
-              className="text-white p-2"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
+
 
             {/* Logo */}
             <div className="text-white text-xl font-bold tracking-wider">
@@ -53,13 +46,8 @@ const Navigation = () => {
                 {item.name}
               </a>
             ))}
-            
-            {/* Search Icon */}
-            <button className="text-white/80 hover:text-white transition-colors">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </button>
+
+
           </div>
 
           {/* Mobile Navigation */}
