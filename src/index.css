@@ -1,1 +1,84 @@
 @import "tailwindcss";
+
+@theme {
+    --color-primary-bg: #ffffff;
+    --color-primary-accent: #000000;
+    --color-secondary-accent: #333333;
+    --color-glass-bg: rgba(255, 255, 255, 0.7);
+    --color-glass-border: rgba(0, 0, 0, 0.1);
+    --font-sans: 'Times New Roman', Times, serif;
+}
+
+:root {
+    --primary-bg: #ffffff;
+    --primary-accent: #000000;
+    --secondary-accent: #333333;
+}
+
+body {
+    background-color: var(--primary-bg);
+    color: #000000;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* Custom Utilities - Light Theme */
+.text-neon {
+    color: var(--primary-accent);
+}
+
+.bg-neon {
+    background-color: var(--primary-accent);
+}
+
+.border-neon {
+    border-color: var(--primary-accent);
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #000000, #555555);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Glass Card - Light Theme */
+.glass-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}
+
+.nav-glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Scrollbar - Light Theme */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #000;
+}
+
+/* Selection */
+::selection {
+    background: #000000;
+    color: white;
+}

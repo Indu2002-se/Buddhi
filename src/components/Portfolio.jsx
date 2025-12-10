@@ -1,106 +1,72 @@
+import { motion } from 'framer-motion';
+import { Github } from 'lucide-react';
+
 const Portfolio = () => {
   const portfolioItems = [
     {
       image: "/e-commerce-web-site-music-shop.png",
-      title: "E-Commerce Music Shop",
-      category: "Web Development",
-      description: "Modern e-commerce website for music instruments and accessories with advanced shopping features",
+      title: "Music Shop",
+      category: "Web Dev",
       githubLink: "https://github.com/Indu2002-se/E-Commerce-WebSite-music-shop-.git",
-      demoLink: "#" // Add demo link if available
     },
     {
       image: "/event-management-system.png",
-      title: "Event Management System",
-      category: "Web Application",
-      description: "Comprehensive event planning and management platform with booking and scheduling capabilities",
+      title: "Event System",
+      category: "Web App",
       githubLink: "https://github.com/Indu2002-se/EventManagement-SpringBoot.git",
-      demoLink: "#" // Add demo link if available
     },
     {
       image: "/port-scanner-systempng.png",
-      title: "Port Scanner System",
-      category: "Security Tool",
-      description: "Network security tool for port scanning and vulnerability assessment",
+      title: "Port Scanner",
+      category: "Security",
       githubLink: "https://github.com/Indu2002-se/Scanner_portsentinal.git",
-      demoLink: "#" // Add demo link if available
     },
     {
       image: "/chatbot.png",
-      title: "Spring AI Chatbot",
+      title: "AI Chatbot",
       category: "AI",
-      description: "Intelligent chatbot powered by Spring AI for natural language conversations",
       githubLink: "https://github.com/Indu2002-se/Spring-Ai-Chatbot.git",
-      demoLink: "#" // Add demo link if available
     }
   ]
 
   return (
-    <section id="portfolio" className="py-20 bg-gradient-to-br from-gray-800 via-gray-900 to-black">
-      <div className="container mx-auto px-6">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="section-title text-white">PORTFOLIO</h2>
-          <p className="section-subtitle">
-            A showcase of my recent work and creative projects
-          </p>
-        </div>
+    <section className="h-full p-6 bg-white">
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-xl font-bold text-black">Selected Works</h2>
+        <a href="https://github.com/Indu2002-se" target="_blank" className="text-xs text-gray-600 hover:text-black hover:underline transition-colors">View All</a>
+      </div>
 
-        {/* Portfolio Grid */}
-        <div className="portfolio-grid mb-16">
-          {portfolioItems.map((item, index) => (
-            <div
-              key={index}
-              className={`relative overflow-hidden rounded-lg bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 transition-all duration-300 hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/20 animate-fade-in-delay-${(index % 4) + 1}`}
-            >
-              {/* Image */}
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* Content - Always Visible */}
-              <div className="p-6">
-                <div className="mb-2">
-                  <span className="text-purple-400 text-xs font-semibold uppercase tracking-wider">
-                    {item.category}
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
-                <p className="text-gray-400 text-sm mb-6 line-clamp-2">{item.description}</p>
-
-                {/* Buttons */}
-                <div className="flex gap-3">
-                  <a
-                    href={item.githubLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold py-2.5 px-4 rounded-lg transition-all duration-300 text-center"
-                  >
-                    View Project
-                  </a>
-                  <a
-                    href={item.demoLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 border border-purple-500 hover:bg-purple-500/10 text-purple-400 hover:text-purple-300 text-sm font-semibold py-2.5 px-4 rounded-lg transition-all duration-300 text-center"
-                  >
-                    View Demo
-                  </a>
-                </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 h-[calc(100%-3rem)]">
+        {portfolioItems.map((item, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1 }}
+            className="group relative rounded-2xl overflow-hidden glass-card hover:shadow-lg transition-all"
+          >
+            {/* Image Area */}
+            <div className="relative h-40 overflow-hidden">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+                <a href={item.githubLink} target="_blank" className="p-2 bg-white rounded-full text-black hover:bg-gray-100 transition-colors shadow-lg">
+                  <Github size={16} />
+                </a>
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* View All Button */}
-        <div className="text-center">
-          <button className="btn-outline px-12 py-4">
-            VIEW ALL PROJECTS
-          </button>
-        </div>
+            {/* Card Body */}
+            <div className="p-4 bg-white">
+              <span className="text-black text-[10px] font-bold tracking-widest uppercase mb-1 block">{item.category}</span>
+              <h3 className="text-sm font-bold text-gray-700 truncate">{item.title}</h3>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   )
