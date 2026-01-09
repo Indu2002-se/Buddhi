@@ -76,12 +76,9 @@ const Hero = () => {
 
                 {/* Stats Grid */}
                 <div className="grid grid-cols-2 gap-3">
+
                     <div className="p-3 rounded-2xl glass-card flex flex-col items-center justify-center text-center">
-                        <span className="text-xl font-bold text-black">5+</span>
-                        <span className="text-[9px] text-gray-500 uppercase tracking-widest mt-1">Years Exp</span>
-                    </div>
-                    <div className="p-3 rounded-2xl glass-card flex flex-col items-center justify-center text-center">
-                        <span className="text-xl font-bold text-black">20+</span>
+                        <span className="text-xl font-bold text-black">10+</span>
                         <span className="text-[9px] text-gray-500 uppercase tracking-widest mt-1">Projects</span>
                     </div>
                 </div>
@@ -96,7 +93,7 @@ const Hero = () => {
                     <h3 className="text-sm font-bold text-black mb-3">My Resume</h3>
                     <div className="flex gap-2">
                         <a
-                            href="/CV_Withanage.pdf"
+                            href="/Resume_Vithanage.pdf"
                             target="_blank"
                             className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors text-xs font-medium"
                         >

@@ -32,7 +32,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                         <span className="text-white font-bold text-lg">B</span>
                     </div>
                     <span className="hidden md:block font-bold text-xl tracking-tight text-black">
-                        Buddhi<span className="text-gray-500"></span>
+                        BIW<span className="text-gray-500"></span>
                     </span>
                 </div>
             </div>

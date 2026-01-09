@@ -39,7 +39,7 @@ const Contact = () => {
               <div className="w-10 h-10 rounded-full glass-card flex items-center justify-center">
                 <Phone size={18} />
               </div>
-              <span>+94 724917893</span>
+              <span>+94 702865781</span>
             </div>
           </div>
         </div>
